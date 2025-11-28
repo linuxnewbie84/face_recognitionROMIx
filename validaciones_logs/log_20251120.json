@@ -1,0 +1,10 @@
+[
+    {
+        "fecha": "2025-11-20",
+        "hora": "22:19:16",
+        "timestamp": "2025-11-20T22:19:16.047284",
+        "resultado": "NO_RECONOCIDO",
+        "confianza": 32.96,
+        "screenshot": "validaciones_screenshots/NO_RECONOCIDO_20251120_221916.jpg"
+    }
+]
