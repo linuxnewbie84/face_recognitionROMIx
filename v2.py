@@ -21,7 +21,6 @@ class capturar:
     def dibujar_interfaz(self, frame, rostro_detectado=False, mensaje=""):
         """Dibuja la interfaz sobre el frame"""
         h, w = frame.shape[:2]
-        
         # Overlay semi-transparente
         overlay = frame.copy()
         

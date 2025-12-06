@@ -2,7 +2,8 @@ import cv2
 import numpy as np
 import os
 import face_recognition
-
+import webbrowser
+import time
 class Reconocimiento:
     def __init__(self):
         self.COLOR_PRIMARIO = (70, 70, 70)      # Gris oscuro
@@ -43,6 +44,8 @@ class Reconocimiento:
             #Codificar rostros
             codificaciones = face_recognition.face_encodings(rgb_frame, ubicaciones)
             
+            usuario_validado = False
+
             #Recorrer rostros   
             for ubicar, codificar in zip(ubicaciones, codificaciones):
                 #Codificar rostros
@@ -53,12 +56,25 @@ class Reconocimiento:
                     coincidencia = face_recognition.compare_faces(encodings, codificar, tolerance=0.6)
                     if True in coincidencia:
                         nombre_coincidencia = nombres[coincidencia.index(True)].upper()
+                        usuario_validado = True
                 
                 #dibujar rectangulo
                 top, right, bottom, left = ubicar
                 cv2.rectangle(frame, (left, top), (right, bottom), self.COLOR_EXITO, 2)
                 cv2.putText(frame, nombre_coincidencia, (left, top - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, self.COLOR_EXITO, 2)
             
+            if usuario_validado:
+                # Mostramos el mensaje de válidado
+                height, width, _ = frame.shape
+                cv2.putText(frame, "VALIDADO", (width//2 - 100, height//2), cv2.FONT_HERSHEY_SIMPLEX, 2, self.COLOR_EXITO, 3)
+                cv2.imshow("Reconocimiento", frame)
+                cv2.waitKey(3000) #Tiempo de validación
+                
+                # Redirigir a login de klinia
+                print(f"Usuario validado. Redirigiendo...")
+                webbrowser.open("https://www.google.com.mx") 
+                break
+
             #Mostrar frame
             cv2.imshow("Reconocimiento", frame)
             
