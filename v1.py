@@ -6,7 +6,7 @@ import json
 
 os.makedirs("rostrosguardados", exist_ok=True)
 
-class capturar:
+class Capturar:
     def __init__(self):
         self.cap = cv2.VideoCapture(0)
     def capturar(self):
@@ -77,7 +77,7 @@ class capturar:
 
         
 def main():
-    cap = capturar()
+    cap = Capturar()
     cap.capturar()
     
 if __name__ == "__main__":
